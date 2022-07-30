@@ -33,7 +33,7 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'https://vurhd-services-staging.herokuapp.com',
+    'vurhd-services-staging.herokuapp.com',
 ]
 
 CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
