@@ -39,7 +39,9 @@ ALLOWED_HOSTS = [
     'vurhd-services-staging.herokuapp.com',
 ]
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
+# CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
@@ -57,6 +59,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'whitenoise.runserver_nostatic',
+    'django_extensions',
 
     'users',
 ]
