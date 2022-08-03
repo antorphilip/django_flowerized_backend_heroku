@@ -39,7 +39,7 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'vurhd-services-staging.herokuapp.com',
+    'flowerized-backend.herokuapp.com',
 ]
 
 # CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
