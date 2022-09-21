@@ -16,3 +16,6 @@ class Categories(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
     Category=models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.Category
