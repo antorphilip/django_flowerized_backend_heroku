@@ -3,5 +3,7 @@ from cart import views
 
 
 urlpatterns = [
-    path('carts/', views.CartList.as_view(), name='cart_list'),
+    path('carts/', views.getCart),
+    path('addcarts/', views.addCart),
+
 ]
