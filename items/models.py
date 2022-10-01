@@ -9,6 +9,9 @@ class Item(models.Model):
     category = models.ForeignKey("Categories", on_delete=models.CASCADE, null=True)
     package = models.ForeignKey("Package", on_delete=models.CASCADE, null=True)
     img_url = models.URLField(max_length = 200, default="https://firebasestorage.googleapis.com/v0/b/flowerized-site.appspot.com/o/momo.jpg?alt=media&token=d902bfc4-e239-44cc-bb89-cf9e2e20b1c5")
+
+    def __str__(self):
+        return self.name
     
 
 

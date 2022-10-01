@@ -11,5 +11,5 @@ from cart.models import Cart
 class CartList(APIView):
     def get(self, request):
         carts = Cart.objects.all()
-        serializer = CartSerializer(Cart, context={'request': request}, many=True)
+        serializer = CartSerializer(carts, context={'request': request}, many=True)
         return Response(serializer.data)
