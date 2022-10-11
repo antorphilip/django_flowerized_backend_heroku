@@ -3,13 +3,12 @@ from items.models import Item
 from items.models import Categories
 
 class ItemSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source='category')
+    package_name = serializers.CharField(source='package')
     class Meta:
         model = Item
-        fields = '__all__'
-        
+        fields = ('id', 'name', 'price', 'category_name','package_name', 'is_active', 'created', 'img_url')
 
-    def get_image_url(self, obj):
-        return obj.image.url
 
 
 
