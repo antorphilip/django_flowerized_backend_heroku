@@ -38,3 +38,12 @@ def register(request):
         return Response(serializer.data)
     else:
         return Response(serializer._errors)
+
+@api_view(['PUT'])
+def update(request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    else:
+        return Response(serializer._errors)

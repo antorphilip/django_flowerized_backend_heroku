@@ -9,4 +9,5 @@ urlpatterns = [
     path('users/', views.UserList.as_view(), name='users_list'),
     # re_path('userdetail/(?P<id>\w+)$',views.UserList.as_view()),
     path('register/', views.register),
+    path('update/', views.update),
 ]
