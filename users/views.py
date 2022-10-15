@@ -39,11 +39,18 @@ def register(request):
     else:
         return Response(serializer._errors)
 
-@api_view(['PUT'])
+@api_view(['PUT', 'GET'])
 def update(request):
-    serializer = UserSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
+    if request.method == 'PUT':
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer._errors)
+    
+    elif request.method == 'GET':
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
-    else:
-        return Response(serializer._errors)
+
