@@ -15,7 +15,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+    password = serializers.CharField(write_only=False)
 
     class Meta:
         model = User
@@ -27,3 +27,10 @@ class UserSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+
+    def update(self, instance, validated_data):
+        instance.email = validated_data['email']
+
+        instance.save()
+
+        return instance

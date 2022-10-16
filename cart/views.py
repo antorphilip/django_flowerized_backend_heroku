@@ -4,20 +4,26 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from cart.serializers import CartSerializer
 from cart.models import Cart
+from users.serializers import MyTokenObtainPairSerializer, UserSerializer
+from users.models import User
 
 # Create your views here.
 
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def getCart(request):
-    carts = Cart.objects.all()
-    serializer = CartSerializer(carts, context={'request': request}, many=True)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        carts = Cart.objects.all()
+        serializer = CartSerializer(carts, context={'request': request}, many=True)
+        return Response(serializer.data)
+    
+    elif request.method == 'POST':
+        serializer = CartSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer._errors)
 
-@api_view(['POST'])  
-def addCart(request):
-    serializer = CartSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+

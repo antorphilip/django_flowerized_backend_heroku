@@ -40,7 +40,7 @@ def register(request):
         return Response(serializer._errors)
 
 @api_view(['PUT', 'GET'])
-def update(request):
+def update(request, pk):
     if request.method == 'PUT':
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
@@ -50,7 +50,7 @@ def update(request):
             return Response(serializer._errors)
     
     elif request.method == 'GET':
-        users = User.objects.all()
+        users = User.objects.all(id=pk)
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
