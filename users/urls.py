@@ -10,5 +10,5 @@ urlpatterns = [
     # re_path('userdetail/(?P<id>\w+)$',views.UserList.as_view()),
     path('register/', views.register),
     # path('update/', views.update),
-    path('update/<int:pk>/', views.update, name = "users_list"), 
+    path('update/<int:pk>/', views.update, name = "user_update"), 
 ]
