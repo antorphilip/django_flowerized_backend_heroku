@@ -42,7 +42,7 @@ def register(request):
 @api_view(['GET', 'PUT'])
 def update(request, pk):
     if request.method == 'PUT':
-        users = User.objects.find(id=pk)
+        users = User.objects.get(id=pk)
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
