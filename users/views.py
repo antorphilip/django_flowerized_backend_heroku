@@ -47,7 +47,7 @@ def update(request, pk):
     #     if serializer.is_valid():
     #         serializer.save()
     #         return Response(serializer.data)
-    #     else:
+    #     else:p
     #         return Response(serializer._errors)
     
     # elif request.method == 'GET':

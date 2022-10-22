@@ -27,3 +27,8 @@ def getCart(request):
             return Response(serializer._errors)
 
 
+@api_view(['GET']) #used filter to return more than one elements
+def usercart(request, user):
+    carts = Cart.objects.filter(user=user)
+    serializer = CartSerializer(carts, context={'request': request}, many=True)
+    return Response(serializer.data)
