@@ -42,8 +42,8 @@ def register(request):
 @api_view(['GET', 'PUT'])
 def update(request, pk):
     if request.method == 'PUT':
-        users = User.objects.get(id=pk)
-        serializer = UserSerializer(data=request.data)
+        user = User.objects.get(pk=pk)
+        serializer = UserSerializer(instance=user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
