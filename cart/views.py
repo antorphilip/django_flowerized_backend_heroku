@@ -19,6 +19,7 @@ def getCart(request):
         return Response(serializer.data)
     
     elif request.method == 'POST':
+        
         serializer = CartSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -27,8 +28,17 @@ def getCart(request):
             return Response(serializer._errors)
 
 
-@api_view(['GET']) #used filter to return more than one elements
+@api_view(['GET', 'POST']) #used filter to return more than one elements
 def usercart(request, user):
-    carts = Cart.objects.filter(user=user)
-    serializer = CartSerializer(carts, context={'request': request}, many=True)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        carts = Cart.objects.filter(user=user)
+        serializer = CartSerializer(carts, context={'request': request}, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        carts = Cart.objects.filter(user=user)
+        serializer = CartSerializer(instance=carts, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer._errors)

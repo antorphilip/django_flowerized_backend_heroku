@@ -24,7 +24,7 @@ def itemtest(request, pk):
 #CATEGORY
 @api_view(['GET']) #used filter to return more than one elements
 def itemcategory(request, category):
-    items = Item.objects.filter(category=category)
+    items = Item.objects.filter(    category)
     serializer = ItemSerializer(items, context={'request': request}, many=True)
     return Response(serializer.data)
 
