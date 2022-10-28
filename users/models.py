@@ -45,12 +45,13 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    objects = UserManager()
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # admin; non superuser
     admin = models.BooleanField(default=False) # superuser
 
+
+    objects = UserManager()
     # password field is built in
 
     USERNAME_FIELD = 'email' # this means we login using an email instead of a username
