@@ -45,6 +45,8 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    # objects = models.Manager()
+    custom_manager = UserManager()
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # admin; non superuser
@@ -68,7 +70,7 @@ class User(AbstractBaseUser):
         return True
 
     @property
-    def is_staff(self):
+    def is_staff(self): 
         "Is the user a member of staff?"
         return self.staff
 
